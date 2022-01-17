@@ -33,7 +33,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     console.log(prevState);
     if (this.state.contacts !== prevState.contacts) {
-      console.log("обновилось что-оо");
+      console.log("обновилось что-то");
       localStorage.setItem("phonebook", JSON.stringify(this.state.contacts));
     }
     console.log(this.state);
@@ -41,7 +41,10 @@ class App extends Component {
 
   formSubmitHandler = (data) => {
     data.id = nanoid();
-    this.state.contacts.find((contact) => contact.name === data.name)
+    this.state.contacts.find(
+      (contact) =>
+        contact.name.toLocaleLowerCase() === data.name.toLocaleLowerCase()
+    )
       ? alert("Такое имя уже занято")
       : this.setState((prevState) => ({
           contacts: [...prevState.contacts, data],
