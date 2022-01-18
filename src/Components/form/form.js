@@ -58,7 +58,7 @@ class Form extends Component {
           />
         </label>
 
-        <button className={s.button} type="submit" on>
+        <button className={s.button} type="submit">
           Save
         </button>
       </form>
